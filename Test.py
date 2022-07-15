@@ -1,23 +1,32 @@
-def calculating_math_func(data):
-    res = list()
-    result = 1
-    for index in range(1, data + 1):
-        result *= index
-        res.append(result)
+site = {
+    'html': {
+        'head': {
+            'title': 'Куплю/продам iPhone недорого'
+        },
+        'body': {
+            'h2': 'У нас самая низкая цена на iPhone',
+            'div': 'Купить',
+            'p': 'Продать'
+        }
+    }
+}
+result = str(site.values()).strip('"\' :',).split(' ')
+find_word = 'iPhone'
+new_word = 'Samsung'
+new_result = list()
+print('Before:', result)
+if find_word in result:
+    for word in result:
+        if word == find_word:
+            new_result.append(new_word)
+            print('*** Replaced..(', word, ').')
+        else:
+            new_result.append(word)
+            print(word)
+    print('After:', new_result)
+else:
+    print('Word not found in String')
 
-    return res
 
 
-print(calculating_math_func(10))
-
-'''
-1. принять в программе значение предела data
-2. передать в функцию data
-3. передать в функцию список
-3. проверить индекс data в списке, если есть - вернуть
-3. если нет - рассчитать все возможные результаты до дата и вернуть результат индекса == data
-
-Числовой ряд: [1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800]
-
-
-'''
+# dict_values([{'head': {'title': 'Куплю/продам iPhone недорого'}, 'body': {'h2': 'У нас самая низкая цена на iPhone', 'div': 'Купить', 'p': 'Продать'}}])
