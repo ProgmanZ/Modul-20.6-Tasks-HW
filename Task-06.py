@@ -1,64 +1,49 @@
 # Задача 6. Глубокое копирование
+import copy
 
-def search_in_value(user_dict, search_word, new_word=None):
-    result = False
-    if search_word in user_dict.values() and isinstance(user_dict, dict):
-        print('Funk!Here!')
-        print(user_dict.values())
-        result = True
-        return result
+
+def check_values(dict_user):
+
+    for i_value in dict_user.values():
+        if not isinstance(i_value, str):
+            return False
+    return True
+
+
+def search_in_value(user_dict, new_brand, search_brand_name='brand'):
+
+    if isinstance(user_dict, dict) and check_values(user_dict):
+        for key, value in user_dict.items():
+
+            if search_brand_name in value:
+                temp_line = user_dict[key]
+                user_dict[key] = temp_line.replace(search_brand_name, new_brand)
 
     for key, value in user_dict.items():
         if isinstance(value, dict):
-            if result:
-                print('Break here')
-                break
-            else:
-                search_in_value(value, search_word)
-
-
-#
-# def recreate_value(user_list, search_key):
-#     if isinstance(user_list)
-
-
-#   функция ищет искомое значение в значениях ключей словаря
-#
-# def search_v2(user_dict, user_key):
-#     result = False
-#     if user_key in user_dict.values() and isinstance(user_dict, dict):
-#         print('Funk!Here!')
-#         result = True
-#         return result
-#     for key, value in user_dict.items():
-#         if isinstance(value, dict):
-#             if result:
-#                 break
-#             else:
-#                 search_v2(value, user_key)
-#
-
-
-
-
+            search_in_value(value, new_brand)
 
 
 
 site = {
     'html': {
         'head': {
-            'title': 'Куплю/продам iPhone недорого'
+            'title': 'Куплю/продам brand недорого brand'
         },
         'body': {
-            'h2': 'У нас самая низкая цена на iPhone',
+            'h2': 'У нас самая низкая цена на brand',
             'div': 'Купить',
-            'p': 'Продать'
+            'p': 'Продать brand'
         }
     }
 }
 
-
-search_in_value(site, 'Продать')
-
+brand_list = list()
+for _ in range(int(input('Сколько сайтов: '))):
+    brand_list.append(input('Введите название продукта для нового сайта: '))
+    for brand in brand_list:
+        tmp_site = copy.deepcopy(site)
+        search_in_value(tmp_site, brand)
+        print(tmp_site)
 
 

@@ -12,8 +12,8 @@ def rec_num(number, user_dict=None):
 
 
 numb = int(input('Введите число: '))
-user_dict = dict()
-rec_num(numb, user_dict)
-user_dict = {key: (user_dict[key]/key**3)**10 for key in user_dict}
-print(user_dict[numb])
-print(user_dict)
+usr_dict = dict()
+rec_num(numb, usr_dict)
+usr_dict = {key: (usr_dict[key]/key**3)**10 for key in usr_dict}
+print(usr_dict[numb])
+print(usr_dict)
