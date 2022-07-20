@@ -23,9 +23,7 @@ def search_in_value(user_dict, new_brand, search_brand_name='brand'):
         if isinstance(value, dict):
             search_in_value(value, new_brand)
 
-
-
-site = {
+site={
     'html': {
         'head': {
             'title': 'Куплю/продам brand недорого brand'
