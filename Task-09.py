@@ -7,7 +7,7 @@ count = 0
 
 stack_1 = [[i, '', ''] for i in range(1, 2 ** discs)]
 
-even = [i for i in range(1, discs + 1) if i % 4]
+even = [i % 4 for i in range(1, discs + 1) if i % 4]
 
 not_even = [i for i in range(discs, 0, -1) if i % 4]
 
