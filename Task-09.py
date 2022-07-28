@@ -11,52 +11,34 @@ def two_numbers(user_list, user_flag=False):
 
 
 discs = int(input('Введите количество дисков: '))
+
 deep = 2 ** discs
 count = 0
 
-stack_1 = [[0, '', ''] for i in range(0, deep-1)]
-# Общее количество перемещений == 2 ** (общее количество дисков)
+stack = [[0, '', ''] for i in range(0, deep-1)]
+
 
 even = [i % 4 for i in range(1, deep + 1) if i % 4]
 even = two_numbers(even, True)
-
-# генераторы должны вернуть количество строк == 2 ** №диска, по 2 значения
 
 not_even = [i % 4 for i in range(deep, 0, -1) if i % 4]
 not_even = two_numbers(not_even)
 not_even.insert(0, 1)
 
-# общий список содержит списки из 3-х элементов: [№перемещения, значение из генератора, второе значение из генератора]
-# Необходимо продумать связку номера диска - генератор(в зависимости от: четный или не четный номер диска
-# Необходимо продумать связку номера диска - номер индекса перемещения
 
 for number_disc in range(0, discs):
     count = 0
+
     for n_move in range(2 ** number_disc - 1, deep, 2 ** (number_disc+1)): # 0
-        stack_1[n_move][0] = number_disc + 1
+        stack[n_move][0] = number_disc + 1
+
         for row in range(1, 3):
-
             if number_disc % 2:
-                stack_1[n_move][row] = not_even[count]
+                stack[n_move][row] = not_even[count]
             else:
-                stack_1[n_move][row] = even[count]
-
+                stack[n_move][row] = even[count]
             count += 1
 
-for i in stack_1:
-    print(i)
+for line in stack:
+    print('Переложить диск {0} со стержня номер {1} на стержень номер {2}'.format(line[0], line[1], line[2]))
 
-# for i_count in range(0, discs + 1): #1
-#     count = 0
-#     for i in range(2 * i_count, deep+1, 2 if i_count == 0 or i_count == 1 else 2 ** i_count): # 0
-#
-#         for j in range(1, 3):
-#
-#             if i_count % 2:
-#                 stack_1[i-1][j] = even[count]
-#             else:
-#                 stack_1[i-1][j] = not_even[count]
-#             count += 1
-
-#
-print(stack_1)
